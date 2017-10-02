@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.adneom.testplanpie">
+
+    <!-- for Wi-fi's service-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+
+    <!-- gyroscope -->
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true" />
+    <!-- accelerometer -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <!-- <uses-feature android:name="android.hardware.sensor.barometer" android:required="true" /> -->
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="true" />
+   <!-- <uses-feature android:name="android.hardware.sensor.light" android:required="true" />
+    <uses-feature android:name="android.hardware.sensor.proximity" android:required="true" />-->
+
+    <!-- vibrate -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Location Network -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <!-- access state network -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- Location GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- use features for location -->
+    <uses-feature android:name="android.hardware.location" android:required="true" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".WifiReceiver">
+            <intent-filter>
+                <action  android:name="android.net.wifi.STATE_CHANGE"></action>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receivers.UserPresentBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
